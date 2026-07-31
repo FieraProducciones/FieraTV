@@ -302,16 +302,20 @@
 
     .tv-screen{
       position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
       height:100%;
       border-radius:19px;
-      background:#070707;
+      background:#000;
     }
 
     .tv-screen img{
       width:100%;
       height:100%;
       object-fit:cover;
+      object-position:center;
     }
 
     .tv-stand{
@@ -341,16 +345,20 @@
     }
 
     .phone-screen{
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
       height:100%;
       border-radius:21px;
-      background:#090909;
+      background:#000;
     }
 
     .phone-screen img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
+      object-position:center;
     }
 
     .section{
@@ -441,10 +449,13 @@
 
     .slide-card{
       position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
       border-radius:22px;
       border:1px solid var(--line);
-      background:#090909;
+      background:#000;
       aspect-ratio:16/9;
       box-shadow:var(--shadow);
     }
@@ -452,7 +463,8 @@
     .slide-card img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
+      object-position:center;
     }
 
     .slide-caption{
@@ -628,9 +640,18 @@
       .brand-subtitle{display:none}
       h1{letter-spacing:-2.5px}
       .hero{min-height:auto;padding-bottom:48px}
-      .hero-visual{min-height:400px}
-      .tv-mockup{animation:none;transform:none}
-      .phone-mockup{width:115px;right:0}
+      .hero-visual{min-height:390px}
+      .tv-mockup{
+        width:100%;
+        max-width:520px;
+        animation:none;
+        transform:none;
+      }
+      .phone-mockup{
+        width:112px;
+        right:4px;
+        bottom:6px;
+      }
       .features,.app-info{grid-template-columns:1fr}
       .section{padding:58px 0}
       .btn{width:100%}
@@ -648,7 +669,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="./">
-        <img class="brand-logo" src="logo.png" alt="Fiera TV">
+        <img class="brand-logo" src="./logo.png?v=10" alt="Fiera TV">
         <span>
           <span class="brand-title">Fiera TV</span>
           <span class="brand-subtitle">Fiera Producciones</span>
@@ -701,16 +722,16 @@
 
           <div class="tv-mockup">
             <div class="tv-screen">
-              <img src="captura1.jpeg?v=5" alt="Fiera TV en televisor"
-                   onerror="this.src='captura1.jpg?v=5'">
+              <img src="./captura1.jpeg?v=10" alt="Fiera TV en televisor"
+                   onerror="this.src='./captura1.jpg?v=10'">
             </div>
             <div class="tv-stand"></div>
           </div>
 
           <div class="phone-mockup">
             <div class="phone-screen">
-              <img src="captura2-nueva.jpeg?v=5" alt="Fiera TV en teléfono"
-                   onerror="this.src='captura2.jpeg?v=5'">
+              <img src="./captura2.jpeg?v=10" alt="Fiera TV en teléfono"
+                   onerror="this.src='./captura2.jpg?v=10'">
             </div>
           </div>
         </div>
@@ -768,32 +789,30 @@
       <section id="capturas" class="section">
         <div class="section-head reveal">
           <span class="eyebrow">Vista previa</span>
-          <h2>Conoce Fiera TV</h2>
-          <p>Las capturas avanzan automáticamente y también pueden seleccionarse manualmente.</p>
-        </div>
+          <h2
 
         <div class="carousel-wrap glass reveal">
           <div id="carousel" class="carousel">
             <div class="slide">
               <div class="slide-card">
-                <img src="captura1.jpeg?v=5" alt="Pantalla principal"
-                     onerror="this.src='captura1.jpg?v=5'">
+                <img src="./captura1.jpeg?v=10" alt="Pantalla principal"
+                     onerror="this.src='./captura1.jpg?v=10'">
                 <div class="slide-caption">Pantalla principal</div>
               </div>
             </div>
 
             <div class="slide">
               <div class="slide-card">
-                <img src="captura2-nueva.jpeg?v=5" alt="Canales y contenido"
-                     onerror="this.src='captura2.jpeg?v=5'">
+                <img src="./captura2.jpeg?v=10" alt="Canales y contenido"
+                     onerror="this.src='./captura2.jpg?v=10'">
                 <div class="slide-caption">Canales y contenido</div>
               </div>
             </div>
 
             <div class="slide">
               <div class="slide-card">
-                <img src="captura3.png?v=5" alt="Experiencia Fiera TV"
-                     onerror="this.src='captura3.jpg?v=5'">
+                <img src="./captura3.png?v=10" alt="Experiencia Fiera TV"
+                     onerror="this.src='./captura3.jpg?v=10'">
                 <div class="slide-caption">Experiencia Fiera TV</div>
               </div>
             </div>
