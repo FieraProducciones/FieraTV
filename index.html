@@ -14,8 +14,8 @@
       --line:rgba(255,255,255,.11);
       --text:#ffffff;
       --muted:#b7b7bd;
-      --orange:#ff7800;
-      --orange2:#ffad35;
+      --blue:#1e90ff;
+      --purple:#8b5cf6;
       --green:#41df88;
       --danger:#ff6b6b;
       --shadow:0 30px 90px rgba(0,0,0,.55);
@@ -29,9 +29,10 @@
       color:var(--text);
       font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
       background:
-        radial-gradient(circle at 10% 10%,rgba(255,120,0,.18),transparent 28%),
-        radial-gradient(circle at 88% 24%,rgba(255,120,0,.10),transparent 26%),
-        linear-gradient(145deg,#020202 0%,#0a0a0b 48%,#030303 100%);
+        radial-gradient(circle at 12% 12%,rgba(30,144,255,.22),transparent 28%),
+        radial-gradient(circle at 88% 20%,rgba(139,92,246,.18),transparent 26%),
+        radial-gradient(circle at 72% 88%,rgba(34,211,238,.10),transparent 32%),
+        linear-gradient(145deg,#020617 0%,#0b1020 48%,#030712 100%);
       overflow-x:hidden;
     }
 
@@ -54,7 +55,7 @@
       width:420px;
       height:420px;
       border-radius:50%;
-      background:rgba(255,120,0,.09);
+      background:rgba(30,144,255,.10);
       filter:blur(90px);
       left:-120px;
       bottom:-130px;
@@ -126,13 +127,13 @@
       padding:5px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.05);
-      box-shadow:0 0 30px rgba(255,120,0,.16);
+      box-shadow:0 0 30px rgba(139,92,246,.18);
       animation:logoPulse 4s ease-in-out infinite;
     }
 
     @keyframes logoPulse{
       0%,100%{transform:scale(1)}
-      50%{transform:scale(1.04);filter:drop-shadow(0 0 10px rgba(255,120,0,.35))}
+      50%{transform:scale(1.04);filter:drop-shadow(0 0 10px rgba(30,144,255,.40))}
     }
 
     .brand-title{font-weight:900;font-size:20px;display:block}
@@ -154,8 +155,8 @@
       color:#170800!important;
       padding:11px 16px;
       border-radius:13px;
-      background:linear-gradient(135deg,var(--orange2),var(--orange));
-      box-shadow:0 12px 35px rgba(255,120,0,.22);
+      background:linear-gradient(135deg,var(--purple),var(--blue));
+      box-shadow:0 12px 35px rgba(139,92,246,.22);
     }
 
     .hero{
@@ -198,7 +199,7 @@
     }
 
     .accent{
-      background:linear-gradient(135deg,#fff 0%,var(--orange2) 38%,var(--orange) 100%);
+      background:linear-gradient(135deg,#fff 0%,var(--purple) 38%,var(--blue) 100%);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
@@ -235,12 +236,12 @@
     }
 
     .btn:hover{transform:translateY(-3px);filter:brightness(1.08)}
-    .btn:focus-visible{outline:3px solid var(--orange2);outline-offset:4px}
+    .btn:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
 
     .btn-primary{
       color:#180900;
-      background:linear-gradient(135deg,var(--orange2),var(--orange));
-      box-shadow:0 16px 45px rgba(255,120,0,.28);
+      background:linear-gradient(135deg,var(--purple),var(--blue));
+      box-shadow:0 16px 45px rgba(30,144,255,.30);
     }
 
     .btn-primary::after{
@@ -284,7 +285,7 @@
       width:420px;
       height:420px;
       border-radius:50%;
-      background:rgba(255,120,0,.18);
+      background:rgba(30,144,255,.18);
       filter:blur(85px);
     }
 
@@ -372,7 +373,7 @@
     }
 
     .eyebrow{
-      color:var(--orange2);
+      color:var(--purple);
       font-size:13px;
       font-weight:900;
       letter-spacing:2px;
@@ -414,7 +415,7 @@
 
     .feature:hover{
       transform:translateY(-7px);
-      border-color:rgba(255,120,0,.28);
+      border-color:rgba(30,144,255,.30);
     }
 
     .feature-icon{
@@ -424,84 +425,57 @@
       height:52px;
       margin-bottom:18px;
       border-radius:16px;
-      border:1px solid rgba(255,120,0,.22);
-      background:rgba(255,120,0,.1);
+      border:1px solid rgba(139,92,246,.22);
+      background:rgba(30,144,255,.10);
       font-size:25px;
     }
 
     .feature h3{margin:0 0 10px;font-size:20px}
     .feature p{margin:0;color:var(--muted);line-height:1.65}
 
-    .carousel-wrap{
-      overflow:hidden;
-      border-radius:26px;
+    .screens-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
     }
 
-    .carousel{
-      display:flex;
-      transition:transform .65s cubic-bezier(.22,.8,.22,1);
-    }
-
-    .slide{
-      min-width:100%;
+    .screen-card{
+      margin:0;
       padding:12px;
+      border-radius:24px;
+      transition:.25s ease;
     }
 
-    .slide-card{
-      position:relative;
+    .screen-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(30,144,255,.30);
+      box-shadow:0 30px 75px rgba(0,0,0,.42);
+    }
+
+    .screen-image{
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
-      border-radius:22px;
-      border:1px solid var(--line);
-      background:#000;
+      width:100%;
       aspect-ratio:16/9;
-      box-shadow:var(--shadow);
+      border-radius:18px;
+      background:#000;
     }
 
-    .slide-card img{
+    .screen-image img{
       width:100%;
       height:100%;
       object-fit:contain;
       object-position:center;
     }
 
-    .slide-caption{
-      position:absolute;
-      left:16px;
-      bottom:16px;
-      padding:10px 13px;
-      border-radius:12px;
-      background:rgba(0,0,0,.62);
-      backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,.13);
-      font-size:14px;
+    .screen-card figcaption{
+      padding:15px 8px 5px;
+      text-align:center;
+      font-size:15px;
       font-weight:800;
-    }
-
-    .carousel-controls{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .dot{
-      width:11px;
-      height:11px;
-      padding:0;
-      border:0;
-      border-radius:50%;
-      cursor:pointer;
-      background:#4a4a50;
-      transition:.2s ease;
-    }
-
-    .dot.active{
-      width:30px;
-      border-radius:999px;
-      background:linear-gradient(90deg,var(--orange2),var(--orange));
+      color:#e6e8ef;
     }
 
     .download-grid{
@@ -623,6 +597,14 @@
 
     .error{color:var(--danger)}
 
+
+    a:focus-visible,
+    button:focus-visible,
+    .screen-card:focus-within{
+      outline:3px solid var(--purple);
+      outline-offset:4px;
+    }
+
     @media (max-width:950px){
       .hero{grid-template-columns:1fr;padding-top:54px}
       .hero-copy{text-align:center}
@@ -630,6 +612,7 @@
       .hero-actions,.meta{justify-content:center}
       .hero-visual{min-height:520px}
       .features{grid-template-columns:repeat(2,1fr)}
+      .screens-grid{grid-template-columns:1fr}
       .download-grid{grid-template-columns:1fr}
     }
 
@@ -652,7 +635,7 @@
         right:4px;
         bottom:6px;
       }
-      .features,.app-info{grid-template-columns:1fr}
+      .features,.app-info,.screens-grid{grid-template-columns:1fr}
       .section{padding:58px 0}
       .btn{width:100%}
       .slide{padding:5px}
@@ -669,7 +652,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="./">
-        <img class="brand-logo" src="./logo.png?v=10" alt="Fiera TV">
+        <img class="brand-logo" src="./logo.png?v=20" alt="Fiera TV">
         <span>
           <span class="brand-title">Fiera TV</span>
           <span class="brand-subtitle">Fiera Producciones</span>
@@ -722,7 +705,7 @@
 
           <div class="tv-mockup">
             <div class="tv-screen">
-              <img src="./captura1.jpeg?v=10" alt="Fiera TV en televisor"
+              <img src="./captura1.jpeg?v=20" alt="Fiera TV en televisor"
                    onerror="this.src='./captura1.jpg?v=10'">
             </div>
             <div class="tv-stand"></div>
@@ -730,7 +713,7 @@
 
           <div class="phone-mockup">
             <div class="phone-screen">
-              <img src="./captura2.jpeg?v=10" alt="Fiera TV en teléfono"
+              <img src="./captura2.jpeg?v=20" alt="Fiera TV en teléfono"
                    onerror="this.src='./captura2.jpg?v=10'">
             </div>
           </div>
@@ -789,40 +772,34 @@
       <section id="capturas" class="section">
         <div class="section-head reveal">
           <span class="eyebrow">Vista previa</span>
-          <h2
-
-        <div class="carousel-wrap glass reveal">
-          <div id="carousel" class="carousel">
-            <div class="slide">
-              <div class="slide-card">
-                <img src="./captura1.jpeg?v=10" alt="Pantalla principal"
-                     onerror="this.src='./captura1.jpg?v=10'">
-                <div class="slide-caption">Pantalla principal</div>
-              </div>
-            </div>
-
-            <div class="slide">
-              <div class="slide-card">
-                <img src="./captura2.jpeg?v=10" alt="Canales y contenido"
-                     onerror="this.src='./captura2.jpg?v=10'">
-                <div class="slide-caption">Canales y contenido</div>
-              </div>
-            </div>
-
-            <div class="slide">
-              <div class="slide-card">
-                <img src="./captura3.png?v=10" alt="Experiencia Fiera TV"
-                     onerror="this.src='./captura3.jpg?v=10'">
-                <div class="slide-caption">Experiencia Fiera TV</div>
-              </div>
-            </div>
-          </div>
+          <h2>Conoce Fiera TV</h2>
+          <p>Capturas fijas de la aplicación, adaptadas automáticamente a celulares, tablets y televisores.</p>
         </div>
 
-        <div class="carousel-controls">
-          <button class="dot active" aria-label="Captura 1"></button>
-          <button class="dot" aria-label="Captura 2"></button>
-          <button class="dot" aria-label="Captura 3"></button>
+        <div class="screens-grid">
+          <figure class="screen-card glass reveal">
+            <div class="screen-image">
+              <img src="./captura1.jpeg?v=20" alt="Pantalla principal de Fiera TV"
+                   onerror="this.src='./captura1.jpg?v=20'">
+            </div>
+            <figcaption>Pantalla principal</figcaption>
+          </figure>
+
+          <figure class="screen-card glass reveal">
+            <div class="screen-image">
+              <img src="./captura2.jpeg?v=20" alt="Canales y contenido de Fiera TV"
+                   onerror="this.src='./captura2.jpg?v=20'">
+            </div>
+            <figcaption>Canales y contenido</figcaption>
+          </figure>
+
+          <figure class="screen-card glass reveal">
+            <div class="screen-image">
+              <img src="./captura3.png?v=20" alt="Experiencia Fiera TV"
+                   onerror="this.src='./captura3.jpg?v=20'">
+            </div>
+            <figcaption>Experiencia Fiera TV</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -1004,26 +981,7 @@
         updateDownloadLinks(fallbackDownload);
       }
     }
-
-    const carousel = document.getElementById("carousel");
-    const dots = [...document.querySelectorAll(".dot")];
-    let currentSlide = 0;
-
-    function showSlide(index){
-      currentSlide = index;
-      carousel.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((dot,i) => dot.classList.toggle("active",i === index));
-    }
-
-    dots.forEach((dot,index) => {
-      dot.addEventListener("click",() => showSlide(index));
-    });
-
-    setInterval(() => {
-      showSlide((currentSlide + 1) % dots.length);
-    },4500);
-
-    const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if(entry.isIntersecting){
           entry.target.classList.add("visible");
