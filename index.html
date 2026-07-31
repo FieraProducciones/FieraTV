@@ -1,1265 +1,1039 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover"
-    >
-
-    <meta
-        name="description"
-        content="Descarga la última versión oficial de Fiera TV para Android, Android TV y TV Box."
-    >
-
-    <meta name="theme-color" content="#080808">
-
-    <title>Fiera TV | Descarga oficial</title>
-
-    <style>
-        :root {
-            --bg: #050505;
-            --card: rgba(18, 18, 18, 0.92);
-            --card-soft: rgba(255, 255, 255, 0.055);
-            --border: rgba(255, 255, 255, 0.12);
-            --text: #ffffff;
-            --muted: #bcbcbc;
-            --orange: #ff7800;
-            --orange-light: #ffad35;
-            --green: #4de18d;
-            --danger: #ff6969;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(
-                    circle at 15% 5%,
-                    rgba(255, 120, 0, 0.2),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 88% 80%,
-                    rgba(255, 120, 0, 0.11),
-                    transparent 34%
-                ),
-                linear-gradient(
-                    145deg,
-                    #030303,
-                    #111111 48%,
-                    #030303
-                );
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.13;
-            background-image:
-                linear-gradient(
-                    rgba(255, 255, 255, 0.035) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.035) 1px,
-                    transparent 1px
-                );
-            background-size: 45px 45px;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .page {
-            position: relative;
-            z-index: 1;
-            width: min(1180px, calc(100% - 30px));
-            margin: auto;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            padding: 24px 0;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .brand-logo {
-            width: 56px;
-            height: 56px;
-            padding: 5px;
-            object-fit: contain;
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .brand-title {
-            display: block;
-            font-size: 20px;
-            font-weight: 800;
-        }
-
-        .brand-subtitle {
-            display: block;
-            margin-top: 3px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .nav a {
-            color: #dddddd;
-            font-size: 14px;
-            text-decoration: none;
-        }
-
-        .nav-download {
-            padding: 11px 16px;
-            color: #170800 !important;
-            font-weight: 800;
-            border-radius: 12px;
-            background: linear-gradient(
-                135deg,
-                var(--orange-light),
-                var(--orange)
-            );
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 26px;
-            align-items: center;
-            min-height: 680px;
-            padding: 42px 0 65px;
-        }
-
-        .hero-copy {
-            padding: 15px 0;
-        }
-
-        .official {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 9px 13px;
-            color: #d7ffe7;
-            font-size: 13px;
-            font-weight: 700;
-            border: 1px solid rgba(77, 225, 141, 0.28);
-            border-radius: 999px;
-            background: rgba(77, 225, 141, 0.1);
-        }
-
-        .official::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 14px var(--green);
-        }
-
-        h1 {
-            max-width: 720px;
-            margin: 25px 0 20px;
-            font-size: clamp(52px, 8vw, 93px);
-            line-height: 0.93;
-            letter-spacing: -4px;
-        }
-
-        .orange {
-            color: var(--orange-light);
-        }
-
-        .hero-text {
-            max-width: 680px;
-            margin: 0;
-            color: var(--muted);
-            font-size: clamp(17px, 2vw, 21px);
-            line-height: 1.65;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 13px;
-            margin-top: 31px;
-        }
-
-        .primary-button,
-        .secondary-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 11px;
-            min-height: 59px;
-            padding: 15px 23px;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: 800;
-            text-decoration: none;
-            transition:
-                transform 0.2s ease,
-                filter 0.2s ease,
-                border-color 0.2s ease;
-        }
-
-        .primary-button {
-            color: #180900;
-            background: linear-gradient(
-                135deg,
-                var(--orange-light),
-                var(--orange)
-            );
-            box-shadow: 0 15px 40px rgba(255, 120, 0, 0.29);
-        }
-
-        .secondary-button {
-            color: white;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.055);
-        }
-
-        .primary-button:hover,
-        .secondary-button:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.08);
-        }
-
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 17px;
-            margin-top: 26px;
-            color: #bdbdbd;
-            font-size: 13px;
-        }
-
-        .hero-visual {
-            position: relative;
-            display: grid;
-            place-items: center;
-            min-height: 500px;
-        }
-
-        .glow {
-            position: absolute;
-            width: 370px;
-            height: 370px;
-            border-radius: 50%;
-            background: rgba(255, 120, 0, 0.23);
-            filter: blur(85px);
-        }
-
-        .phone-card {
-            position: relative;
-            width: min(390px, 92%);
-            padding: 21px;
-            border: 1px solid var(--border);
-            border-radius: 35px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255, 255, 255, 0.11),
-                    rgba(255, 255, 255, 0.025)
-                );
-            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.65);
-            transform: rotate(3deg);
-        }
-
-        .phone-screen {
-            overflow: hidden;
-            min-height: 470px;
-            padding: 35px 25px;
-            text-align: center;
-            border-radius: 25px;
-            background:
-                radial-gradient(
-                    circle at top,
-                    rgba(255, 120, 0, 0.22),
-                    transparent 37%
-                ),
-                #090909;
-        }
-
-        .app-logo-large {
-            width: 145px;
-            height: 145px;
-            margin: 30px auto 18px;
-            padding: 9px;
-            object-fit: contain;
-            border: 1px solid var(--border);
-            border-radius: 34px;
-            background: rgba(255, 255, 255, 0.055);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .phone-screen h2 {
-            margin: 12px 0 8px;
-            font-size: 35px;
-        }
-
-        .phone-screen p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.55;
-        }
-
-        .mini-button {
-            display: block;
-            margin-top: 27px;
-            padding: 15px;
-            color: #180900;
-            font-weight: 800;
-            border-radius: 14px;
-            background: linear-gradient(
-                135deg,
-                var(--orange-light),
-                var(--orange)
-            );
-        }
-
-        section {
-            scroll-margin-top: 25px;
-        }
-
-        .section {
-            padding: 75px 0;
-        }
-
-        .section-heading {
-            max-width: 760px;
-            margin-bottom: 35px;
-        }
-
-        .section-heading span {
-            color: var(--orange-light);
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .section-heading h2 {
-            margin: 10px 0;
-            font-size: clamp(34px, 5vw, 50px);
-        }
-
-        .section-heading p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 17px;
-            line-height: 1.65;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 17px;
-        }
-
-        .feature {
-            padding: 26px;
-            border: 1px solid var(--border);
-            border-radius: 21px;
-            background: var(--card);
-            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-icon {
-            display: grid;
-            place-items: center;
-            width: 50px;
-            height: 50px;
-            margin-bottom: 18px;
-            font-size: 25px;
-            border-radius: 15px;
-            background: rgba(255, 120, 0, 0.12);
-            border: 1px solid rgba(255, 120, 0, 0.2);
-        }
-
-        .feature h3 {
-            margin: 0 0 10px;
-            font-size: 20px;
-        }
-
-        .feature p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .screenshots {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 17px;
-        }
-
-        .screenshot {
-            position: relative;
-            overflow: hidden;
-            min-height: 245px;
-            border: 1px solid var(--border);
-            border-radius: 21px;
-            background:
-                radial-gradient(
-                    circle at top left,
-                    rgba(255, 120, 0, 0.2),
-                    transparent 40%
-                ),
-                #101010;
-        }
-
-        .screenshot img {
-            width: 100%;
-            height: 100%;
-            min-height: 245px;
-            object-fit: cover;
-        }
-
-        .screenshot-placeholder {
-            display: grid;
-            place-items: center;
-            min-height: 245px;
-            padding: 25px;
-            color: #a3a3a3;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        .download-section {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 25px;
-            align-items: stretch;
-        }
-
-        .download-card,
-        .qr-card {
-            padding: clamp(27px, 4vw, 43px);
-            border: 1px solid var(--border);
-            border-radius: 27px;
-            background: var(--card);
-            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
-        }
-
-        .download-card h2,
-        .qr-card h2 {
-            margin-top: 0;
-        }
-
-        .app-info {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 11px;
-            margin: 24px 0;
-        }
-
-        .info-row {
-            padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 14px;
-            background: var(--card-soft);
-        }
-
-        .info-label {
-            display: block;
-            margin-bottom: 7px;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .info-value {
-            font-weight: 800;
-        }
-
-        .release-notes {
-            min-height: 80px;
-            margin-top: 22px;
-            color: #d0d0d0;
-            line-height: 1.75;
-            white-space: pre-line;
-        }
-
-        .qr-card {
-            text-align: center;
-        }
-
-        .qr-card p {
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        #qr-code {
-            display: block;
-            width: 220px;
-            height: 220px;
-            margin: 24px auto 16px;
-            padding: 10px;
-            border-radius: 16px;
-            background: white;
-        }
-
-        .copy-button {
-            width: 100%;
-            min-height: 47px;
-            margin-top: 10px;
-            color: white;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            background: rgba(255, 255, 255, 0.06);
-            font-weight: 700;
-        }
-
-        .notice {
-            margin-top: 18px;
-            padding: 14px;
-            color: #d7d7d7;
-            font-size: 13px;
-            line-height: 1.55;
-            border: 1px solid rgba(77, 225, 141, 0.17);
-            border-radius: 13px;
-            background: rgba(77, 225, 141, 0.06);
-        }
-
-        footer {
-            margin-top: 30px;
-            padding: 34px 0 45px;
-            color: #8f8f8f;
-            text-align: center;
-            font-size: 13px;
-            border-top: 1px solid var(--border);
-        }
-
-        .error {
-            color: var(--danger);
-        }
-
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding-top: 25px;
-            }
-
-            .hero-copy {
-                text-align: center;
-            }
-
-            .hero-text {
-                margin-inline: auto;
-            }
-
-            .hero-actions,
-            .hero-meta {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                min-height: 480px;
-            }
-
-            .features,
-            .screenshots {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .download-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .nav a:not(.nav-download) {
-                display: none;
-            }
-
-            .brand-subtitle {
-                display: none;
-            }
-
-            h1 {
-                letter-spacing: -2px;
-            }
-
-            .hero {
-                min-height: auto;
-            }
-
-            .phone-card {
-                transform: none;
-            }
-
-            .features,
-            .screenshots,
-            .app-info {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 55px 0;
-            }
-
-            .primary-button,
-            .secondary-button {
-                width: 100%;
-            }
-        }
-
-        @media (min-width: 1500px) {
-            body.tv-mode .primary-button,
-            body.tv-mode .secondary-button,
-            body.tv-mode .nav-download {
-                outline-offset: 6px;
-            }
-
-            body.tv-mode a:focus,
-            body.tv-mode button:focus {
-                outline: 4px solid var(--orange-light);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Descarga oficial de Fiera TV para Android, Android TV y TV Box.">
+  <meta name="theme-color" content="#070707">
+  <title>Fiera TV | Descarga oficial</title>
+
+  <style>
+    :root{
+      --bg:#050505;
+      --card:rgba(18,18,21,.74);
+      --line:rgba(255,255,255,.11);
+      --text:#ffffff;
+      --muted:#b7b7bd;
+      --orange:#ff7800;
+      --orange2:#ffad35;
+      --green:#41df88;
+      --danger:#ff6b6b;
+      --shadow:0 30px 90px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%,rgba(255,120,0,.18),transparent 28%),
+        radial-gradient(circle at 88% 24%,rgba(255,120,0,.10),transparent 26%),
+        linear-gradient(145deg,#020202 0%,#0a0a0b 48%,#030303 100%);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.14;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:42px 42px;
+      z-index:0;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:rgba(255,120,0,.09);
+      filter:blur(90px);
+      left:-120px;
+      bottom:-130px;
+      pointer-events:none;
+      animation:floatGlow 9s ease-in-out infinite alternate;
+      z-index:0;
+    }
+
+    @keyframes floatGlow{
+      from{transform:translate3d(0,0,0) scale(1)}
+      to{transform:translate3d(80px,-55px,0) scale(1.15)}
+    }
+
+    @keyframes shine{
+      0%,55%{left:-45%}
+      100%{left:125%}
+    }
+
+    @keyframes floatDevice{
+      0%,100%{transform:perspective(1100px) rotateY(-8deg) rotateX(3deg) translateY(0)}
+      50%{transform:perspective(1100px) rotateY(-5deg) rotateX(2deg) translateY(-12px)}
+    }
+
+    @keyframes phoneFloat{
+      0%,100%{transform:rotate(5deg) translateY(0)}
+      50%{transform:rotate(2deg) translateY(-10px)}
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{font:inherit}
+
+    .page{
+      position:relative;
+      z-index:1;
+      width:min(1180px,calc(100% - 28px));
+      margin:auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:12px;
+      z-index:50;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      margin-top:12px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(8,8,10,.68);
+      backdrop-filter:blur(18px);
+      box-shadow:0 15px 45px rgba(0,0,0,.3);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-logo{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      border-radius:16px;
+      padding:5px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 0 30px rgba(255,120,0,.16);
+      animation:logoPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.04);filter:drop-shadow(0 0 10px rgba(255,120,0,.35))}
+    }
+
+    .brand-title{font-weight:900;font-size:20px;display:block}
+    .brand-subtitle{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .nav a{
+      color:#ddd;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .nav-download{
+      color:#170800!important;
+      padding:11px 16px;
+      border-radius:13px;
+      background:linear-gradient(135deg,var(--orange2),var(--orange));
+      box-shadow:0 12px 35px rgba(255,120,0,.22);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.03fr .97fr;
+      gap:36px;
+      align-items:center;
+      min-height:720px;
+      padding:70px 0 72px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid rgba(65,223,136,.26);
+      background:rgba(65,223,136,.09);
+      color:#d8ffe9;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .badge::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 14px var(--green);
+    }
+
+    h1{
+      margin:24px 0 20px;
+      font-size:clamp(52px,7.5vw,92px);
+      line-height:.94;
+      letter-spacing:-4px;
+      max-width:720px;
+    }
+
+    .accent{
+      background:linear-gradient(135deg,#fff 0%,var(--orange2) 38%,var(--orange) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero-text{
+      margin:0;
+      max-width:690px;
+      color:var(--muted);
+      font-size:clamp(17px,2vw,21px);
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:13px;
+      margin-top:30px;
+    }
+
+    .btn{
+      position:relative;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:58px;
+      padding:15px 23px;
+      border-radius:16px;
+      font-size:16px;
+      font-weight:900;
+      transition:.22s ease;
+    }
+
+    .btn:hover{transform:translateY(-3px);filter:brightness(1.08)}
+    .btn:focus-visible{outline:3px solid var(--orange2);outline-offset:4px}
+
+    .btn-primary{
+      color:#180900;
+      background:linear-gradient(135deg,var(--orange2),var(--orange));
+      box-shadow:0 16px 45px rgba(255,120,0,.28);
+    }
+
+    .btn-primary::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-45%;
+      width:30%;
+      height:180%;
+      transform:rotate(18deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+      animation:shine 3.6s ease-in-out infinite;
+    }
+
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      color:#fff;
+      backdrop-filter:blur(10px);
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      margin-top:24px;
+      color:#bfbfc4;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:540px;
+      display:grid;
+      place-items:center;
+    }
+
+    .visual-glow{
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:rgba(255,120,0,.18);
+      filter:blur(85px);
+    }
+
+    .tv-mockup{
+      position:relative;
+      width:min(520px,96%);
+      aspect-ratio:16/10.3;
+      padding:14px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.15);
+      background:linear-gradient(145deg,#25252a,#0e0e10);
+      box-shadow:var(--shadow);
+      animation:floatDevice 6s ease-in-out infinite;
+    }
+
+    .tv-screen{
+      position:relative;
+      overflow:hidden;
+      height:100%;
+      border-radius:19px;
+      background:#070707;
+    }
+
+    .tv-screen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .tv-stand{
+      position:absolute;
+      width:33%;
+      height:15px;
+      left:50%;
+      bottom:-31px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:#151519;
+      box-shadow:0 12px 30px rgba(0,0,0,.65);
+    }
+
+    .phone-mockup{
+      position:absolute;
+      right:-8px;
+      bottom:-8px;
+      width:155px;
+      aspect-ratio:9/18.5;
+      padding:8px;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(145deg,#2a2a2f,#0b0b0d);
+      box-shadow:0 22px 65px rgba(0,0,0,.65);
+      animation:phoneFloat 5s ease-in-out infinite;
+    }
+
+    .phone-screen{
+      overflow:hidden;
+      height:100%;
+      border-radius:21px;
+      background:#090909;
+    }
+
+    .phone-screen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .section{
+      padding:80px 0;
+      scroll-margin-top:100px;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin-bottom:34px;
+    }
+
+    .eyebrow{
+      color:var(--orange2);
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    .section h2{
+      margin:10px 0 12px;
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.05;
+      letter-spacing:-2px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .glass{
+      border:1px solid var(--line);
+      background:var(--card);
+      backdrop-filter:blur(18px);
+      box-shadow:0 22px 60px rgba(0,0,0,.28);
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:17px;
+    }
+
+    .feature{
+      padding:26px;
+      border-radius:22px;
+      transition:.25s ease;
+    }
+
+    .feature:hover{
+      transform:translateY(-7px);
+      border-color:rgba(255,120,0,.28);
+    }
+
+    .feature-icon{
+      display:grid;
+      place-items:center;
+      width:52px;
+      height:52px;
+      margin-bottom:18px;
+      border-radius:16px;
+      border:1px solid rgba(255,120,0,.22);
+      background:rgba(255,120,0,.1);
+      font-size:25px;
+    }
+
+    .feature h3{margin:0 0 10px;font-size:20px}
+    .feature p{margin:0;color:var(--muted);line-height:1.65}
+
+    .carousel-wrap{
+      overflow:hidden;
+      border-radius:26px;
+    }
+
+    .carousel{
+      display:flex;
+      transition:transform .65s cubic-bezier(.22,.8,.22,1);
+    }
+
+    .slide{
+      min-width:100%;
+      padding:12px;
+    }
+
+    .slide-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:#090909;
+      aspect-ratio:16/9;
+      box-shadow:var(--shadow);
+    }
+
+    .slide-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .slide-caption{
+      position:absolute;
+      left:16px;
+      bottom:16px;
+      padding:10px 13px;
+      border-radius:12px;
+      background:rgba(0,0,0,.62);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.13);
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .carousel-controls{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .dot{
+      width:11px;
+      height:11px;
+      padding:0;
+      border:0;
+      border-radius:50%;
+      cursor:pointer;
+      background:#4a4a50;
+      transition:.2s ease;
+    }
+
+    .dot.active{
+      width:30px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--orange2),var(--orange));
+    }
+
+    .download-grid{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .download-card,.qr-card{
+      padding:clamp(26px,4vw,42px);
+      border-radius:28px;
+    }
+
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 13px;
+      border-radius:999px;
+      color:#d9ffe9;
+      border:1px solid rgba(65,223,136,.25);
+      background:rgba(65,223,136,.08);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .status-pill::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 12px var(--green);
+    }
+
+    .app-info{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:11px;
+      margin:24px 0;
+    }
+
+    .info{
+      padding:15px;
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.035);
+    }
+
+    .info small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:7px;
+      font-size:12px;
+    }
+
+    .notice{
+      margin-top:18px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(65,223,136,.18);
+      background:rgba(65,223,136,.055);
+      color:#d8d8dc;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .release-notes{
+      margin-top:18px;
+      color:#d2d2d7;
+      line-height:1.75;
+      white-space:pre-line;
+    }
+
+    .qr-card{text-align:center}
+    .qr-card p{color:var(--muted);line-height:1.65}
+
+    #qr-code{
+      width:220px;
+      height:220px;
+      margin:24px auto 16px;
+      padding:10px;
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .copy-btn{
+      width:100%;
+      min-height:48px;
+      margin-top:8px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      color:#fff;
+      background:rgba(255,255,255,.055);
+      cursor:pointer;
+      font-weight:800;
+    }
+
+    footer{
+      margin-top:34px;
+      padding:35px 0 46px;
+      text-align:center;
+      color:#8d8d94;
+      font-size:13px;
+      border-top:1px solid var(--line);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .7s ease,transform .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    .error{color:var(--danger)}
+
+    @media (max-width:950px){
+      .hero{grid-template-columns:1fr;padding-top:54px}
+      .hero-copy{text-align:center}
+      .hero-text{margin-inline:auto}
+      .hero-actions,.meta{justify-content:center}
+      .hero-visual{min-height:520px}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .download-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:680px){
+      .page{width:min(100% - 18px,1180px)}
+      .topbar{top:7px}
+      .nav a:not(.nav-download){display:none}
+      .brand-subtitle{display:none}
+      h1{letter-spacing:-2.5px}
+      .hero{min-height:auto;padding-bottom:48px}
+      .hero-visual{min-height:400px}
+      .tv-mockup{animation:none;transform:none}
+      .phone-mockup{width:115px;right:0}
+      .features,.app-info{grid-template-columns:1fr}
+      .section{padding:58px 0}
+      .btn{width:100%}
+      .slide{padding:5px}
+      .slide-card{aspect-ratio:16/10}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="./">
+        <img class="brand-logo" src="logo.png" alt="Fiera TV">
+        <span>
+          <span class="brand-title">Fiera TV</span>
+          <span class="brand-subtitle">Fiera Producciones</span>
+        </span>
+      </a>
 
-    <div class="page">
+      <nav class="nav">
+        <a href="#caracteristicas">Características</a>
+        <a href="#capturas">Capturas</a>
+        <a class="nav-download" href="#descargar">Descargar</a>
+      </nav>
+    </header>
 
-        <header class="topbar">
+    <main>
+      <section class="hero">
+        <div class="hero-copy reveal">
+          <div class="badge">Aplicación oficial</div>
 
-            <a class="brand" href="./">
-                <img
-                    class="brand-logo"
-                    src="logo.png"
-                    alt="Fiera TV"
-                >
+          <h1>
+            Todo tu entretenimiento
+            <span class="accent">en una sola app.</span>
+          </h1>
 
-                <span>
-                    <span class="brand-title">Fiera TV</span>
-                    <span class="brand-subtitle">Fiera Producciones</span>
-                </span>
+          <p class="hero-text">
+            Fiera TV está optimizada para teléfonos Android, tablets,
+            Android TV y TV Box. Descarga siempre la versión más reciente
+            desde nuestro sitio oficial.
+          </p>
+
+          <div class="hero-actions">
+            <a id="hero-download" class="btn btn-primary"
+               href="https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk">
+              ⬇ Descargar APK
             </a>
 
-            <nav class="nav">
-                <a href="#caracteristicas">Características</a>
-                <a href="#capturas">Capturas</a>
-                <a
-                    class="nav-download"
-                    href="#descargar"
-                >
-                    Descargar
-                </a>
-            </nav>
-
-        </header>
-
-        <main>
-
-            <section class="hero">
-
-                <div class="hero-copy">
-
-                    <div class="official">
-                        Aplicación oficial
-                    </div>
-
-                    <h1>
-                        Tu entretenimiento,
-                        <span class="orange">en un solo lugar.</span>
-                    </h1>
-
-                    <p class="hero-text">
-                        Fiera TV está optimizada para teléfonos Android,
-                        tablets, TV Box y Android TV. Descarga siempre
-                        la versión más reciente desde nuestro sitio oficial.
-                    </p>
-
-                    <div class="hero-actions">
-
-                        <a
-                            id="hero-download"
-                            class="primary-button"
-                            href="https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk"
-                        >
-                            ⬇ Descargar para Android
-                        </a>
-
-                        <a
-                            class="secondary-button"
-                            href="#caracteristicas"
-                        >
-                            Ver características
-                        </a>
-
-                    </div>
-
-                    <div class="hero-meta">
-                        <span>✓ Descarga segura</span>
-                        <span>✓ Android y Android TV</span>
-                        <span>✓ Última versión</span>
-                    </div>
-
-                </div>
-
-                <div class="hero-visual">
-
-                    <div class="glow"></div>
-
-                    <div class="phone-card">
-
-                        <div class="phone-screen">
-
-                            <img
-                                class="app-logo-large"
-                                src="logo.png"
-                                alt="Logo Fiera TV"
-                            >
-
-                            <h2>Fiera TV</h2>
-
-                            <p>
-                                Televisión y entretenimiento
-                                desde tus dispositivos Android.
-                            </p>
-
-                            <span class="mini-button">
-                                Descargar aplicación
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <section
-                id="caracteristicas"
-                class="section"
-            >
-
-                <div class="section-heading">
-                    <span>Características</span>
-
-                    <h2>
-                        Diseñada para disfrutar en cualquier pantalla
-                    </h2>
-
-                    <p>
-                        Una experiencia adaptada para controles remotos,
-                        pantallas grandes, teléfonos y dispositivos Android.
-                    </p>
-                </div>
-
-                <div class="features">
-
-                    <article class="feature">
-                        <div class="feature-icon">📺</div>
-                        <h3>Televisión en vivo</h3>
-                        <p>
-                            Acceso rápido y organizado al contenido
-                            disponible en tu cuenta.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-icon">🎬</div>
-                        <h3>Películas y series</h3>
-                        <p>
-                            Interfaz moderna y cómoda para navegar
-                            entre diferentes categorías.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-icon">⚽</div>
-                        <h3>Deportes</h3>
-                        <p>
-                            Disfruta de tus eventos y programación
-                            deportiva desde Android.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-icon">📦</div>
-                        <h3>Compatible con TV Box</h3>
-                        <p>
-                            Diseño preparado para televisores y
-                            dispositivos controlados con mando.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Rápida y ligera</h3>
-                        <p>
-                            Instalación sencilla mediante un archivo APK
-                            descargado desde GitHub.
-                        </p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Versiones actualizadas</h3>
-                        <p>
-                            El botón descarga automáticamente la última
-                            versión publicada.
-                        </p>
-                    </article>
-
-                </div>
-
-            </section>
-
-            <section
-                id="capturas"
-                class="section"
-            >
-
-                <div class="section-heading">
-                    <span>Vista previa</span>
-
-                    <h2>Conoce la aplicación</h2>
-
-                    <p>
-                        Puedes agregar tres capturas reales de Fiera TV
-                        en esta sección.
-                    </p>
-                </div>
-
-                <div class="screenshots">
-
-                    <div class="screenshot">
-                        <img
-                            src="captura1.jpeg"
-                            alt="Pantalla principal de Fiera TV"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                        >
-
-                        <div
-                            class="screenshot-placeholder"
-                            style="display:none"
-                        >
-                            Sube una imagen llamada
-                            <strong>captura1.jpg</strong>
-                        </div>
-                    </div>
-
-                    <div class="screenshot">
-                        <img
-                            src="captura2.jpeg"
-                            alt="Canales en Fiera TV"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                        >
-
-                        <div
-                            class="screenshot-placeholder"
-                            style="display:none"
-                        >
-                            Sube una imagen llamada
-                            <strong>captura2.jpg</strong>
-                        </div>
-                    </div>
-
-                    <div class="screenshot">
-                        <img
-                            src="captura3.png"
-                            alt="Contenido de Fiera TV"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                        >
-
-                        <div
-                            class="screenshot-placeholder"
-                            style="display:none"
-                        >
-                            Sube una imagen llamada
-                            <strong>captura3.jpg</strong>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-
-            <section
-                id="descargar"
-                class="section"
-            >
-
-                <div class="download-section">
-
-                    <article class="download-card">
-
-                        <div class="section-heading">
-                            <span>Descarga oficial</span>
-
-                            <h2>Obtén la última versión</h2>
-
-                            <p id="device-message">
-                                La página está verificando tu dispositivo.
-                            </p>
-                        </div>
-
-                        <div class="app-info">
-
-                            <div class="info-row">
-                                <span class="info-label">Versión</span>
-                                <span
-                                    id="version"
-                                    class="info-value"
-                                >
-                                    Consultando…
-                                </span>
-                            </div>
-
-                            <div class="info-row">
-                                <span class="info-label">
-                                    Fecha de actualización
-                                </span>
-                                <span
-                                    id="release-date"
-                                    class="info-value"
-                                >
-                                    Consultando…
-                                </span>
-                            </div>
-
-                            <div class="info-row">
-                                <span class="info-label">Tamaño</span>
-                                <span
-                                    id="file-size"
-                                    class="info-value"
-                                >
-                                    Consultando…
-                                </span>
-                            </div>
-
-                            <div class="info-row">
-                                <span class="info-label">
-                                    Compatibilidad
-                                </span>
-                                <span class="info-value">
-                                    Android / Android TV
-                                </span>
-                            </div>
-
-                        </div>
-
-                        <a
-                            id="main-download"
-                            class="primary-button"
-                            href="https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk"
-                        >
-                            ⬇ Descargar FieraTV.apk
-                        </a>
-
-                        <div class="notice">
-                            Es posible que Android solicite permiso para
-                            instalar aplicaciones desde el navegador o
-                            administrador de archivos.
-                        </div>
-
-                        <h3>Novedades de esta versión</h3>
-
-                        <div
-                            id="release-notes"
-                            class="release-notes"
-                        >
-                            Consultando la última publicación…
-                        </div>
-
-                    </article>
-
-                    <aside class="qr-card">
-
-                        <h2>Descargar con QR</h2>
-
-                        <p>
-                            Escanea el código con tu teléfono para abrir
-                            directamente la descarga.
-                        </p>
-
-                        <img
-                            id="qr-code"
-                            alt="Código QR para descargar Fiera TV"
-                        >
-
-                        <button
-                            id="copy-link"
-                            class="copy-button"
-                            type="button"
-                        >
-                            Copiar enlace de descarga
-                        </button>
-
-                        <p id="copy-status"></p>
-
-                    </aside>
-
-                </div>
-
-            </section>
-
-        </main>
-
-        <footer>
-            <strong>© 2026 Fiera Producciones</strong><br>
-            Fiera TV para Android, Android TV y TV Box.
-        </footer>
-
-    </div>
-
-    <script>
-        const owner = "FieraProducciones";
-        const repository = "FieraTV";
-
-        const fallbackDownload =
-            "https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk";
-
-        const apiUrl =
-            `https://api.github.com/repos/${owner}/${repository}/releases/latest`;
-
-        let currentDownloadUrl = fallbackDownload;
-
-        function formatBytes(bytes) {
-            if (!bytes || bytes <= 0) {
-                return "No disponible";
-            }
-
-            const units = ["B", "KB", "MB", "GB"];
-            const index = Math.floor(
-                Math.log(bytes) / Math.log(1024)
-            );
-
-            const value = bytes / Math.pow(1024, index);
-
-            return `${value.toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+            <a class="btn btn-secondary" href="#capturas">
+              Ver capturas
+            </a>
+          </div>
+
+          <div class="meta">
+            <span>✓ Descarga oficial</span>
+            <span>✓ Android y Android TV</span>
+            <span>✓ Última versión disponible</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="visual-glow"></div>
+
+          <div class="tv-mockup">
+            <div class="tv-screen">
+              <img src="captura1.jpeg?v=5" alt="Fiera TV en televisor"
+                   onerror="this.src='captura1.jpg?v=5'">
+            </div>
+            <div class="tv-stand"></div>
+          </div>
+
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <img src="captura2-nueva.jpeg?v=5" alt="Fiera TV en teléfono"
+                   onerror="this.src='captura2.jpeg?v=5'">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="caracteristicas" class="section">
+        <div class="section-head reveal">
+          <span class="eyebrow">Características</span>
+          <h2>Diseñada para cualquier pantalla</h2>
+          <p>
+            Una experiencia moderna, rápida y preparada para control remoto,
+            pantallas grandes, teléfonos y tablets Android.
+          </p>
+        </div>
+
+        <div class="features">
+          <article class="feature glass reveal">
+            <div class="feature-icon">📺</div>
+            <h3>TV en vivo</h3>
+            <p>Navegación rápida y organizada para disfrutar tu programación.</p>
+          </article>
+
+          <article class="feature glass reveal">
+            <div class="feature-icon">🎬</div>
+            <h3>Películas y series</h3>
+            <p>Explora tus categorías con una interfaz moderna y cómoda.</p>
+          </article>
+
+          <article class="feature glass reveal">
+            <div class="feature-icon">⚽</div>
+            <h3>Deportes</h3>
+            <p>Accede fácilmente a la programación deportiva disponible.</p>
+          </article>
+
+          <article class="feature glass reveal">
+            <div class="feature-icon">📦</div>
+            <h3>Android TV y TV Box</h3>
+            <p>Interfaz preparada para pantallas grandes y control remoto.</p>
+          </article>
+
+          <article class="feature glass reveal">
+            <div class="feature-icon">⚡</div>
+            <h3>Rápida y ligera</h3>
+            <p>Instalación sencilla mediante el archivo APK oficial.</p>
+          </article>
+
+          <article class="feature glass reveal">
+            <div class="feature-icon">🔄</div>
+            <h3>Siempre actualizada</h3>
+            <p>La página obtiene automáticamente la última versión publicada.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="capturas" class="section">
+        <div class="section-head reveal">
+          <span class="eyebrow">Vista previa</span>
+          <h2>Conoce Fiera TV</h2>
+          <p>Las capturas avanzan automáticamente y también pueden seleccionarse manualmente.</p>
+        </div>
+
+        <div class="carousel-wrap glass reveal">
+          <div id="carousel" class="carousel">
+            <div class="slide">
+              <div class="slide-card">
+                <img src="captura1.jpeg?v=5" alt="Pantalla principal"
+                     onerror="this.src='captura1.jpg?v=5'">
+                <div class="slide-caption">Pantalla principal</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide-card">
+                <img src="captura2-nueva.jpeg?v=5" alt="Canales y contenido"
+                     onerror="this.src='captura2.jpeg?v=5'">
+                <div class="slide-caption">Canales y contenido</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide-card">
+                <img src="captura3.png?v=5" alt="Experiencia Fiera TV"
+                     onerror="this.src='captura3.jpg?v=5'">
+                <div class="slide-caption">Experiencia Fiera TV</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="dot active" aria-label="Captura 1"></button>
+          <button class="dot" aria-label="Captura 2"></button>
+          <button class="dot" aria-label="Captura 3"></button>
+        </div>
+      </section>
+
+      <section id="descargar" class="section">
+        <div class="download-grid">
+          <article class="download-card glass reveal">
+            <span class="status-pill">Última versión disponible</span>
+
+            <div class="section-head" style="margin-top:18px">
+              <span class="eyebrow">Descarga oficial</span>
+              <h2>Obtén la versión más reciente</h2>
+              <p id="device-message">Verificando tu dispositivo…</p>
+            </div>
+
+            <div class="app-info">
+              <div class="info">
+                <small>Versión</small>
+                <strong id="version">Consultando…</strong>
+              </div>
+
+              <div class="info">
+                <small>Fecha de actualización</small>
+                <strong id="release-date">Consultando…</strong>
+              </div>
+
+              <div class="info">
+                <small>Tamaño</small>
+                <strong id="file-size">Consultando…</strong>
+              </div>
+
+              <div class="info">
+                <small>Compatibilidad</small>
+                <strong>Android / Android TV</strong>
+              </div>
+            </div>
+
+            <a id="main-download" class="btn btn-primary"
+               href="https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk">
+              ⬇ Descargar FieraTV.apk
+            </a>
+
+            <div class="notice">
+              Android puede solicitar permiso para instalar aplicaciones desde el navegador
+              o desde el administrador de archivos.
+            </div>
+
+            <h3 style="margin-top:26px">Novedades de esta versión</h3>
+            <div id="release-notes" class="release-notes">
+              Consultando la última publicación…
+            </div>
+          </article>
+
+          <aside class="qr-card glass reveal">
+            <h2 style="font-size:34px">Descargar con QR</h2>
+            <p>Escanea el código con tu teléfono para abrir la descarga oficial.</p>
+
+            <img id="qr-code" alt="Código QR para descargar Fiera TV">
+
+            <button id="copy-link" class="copy-btn" type="button">
+              Copiar enlace de descarga
+            </button>
+
+            <p id="copy-status"></p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>© 2026 Fiera Producciones</strong><br>
+      Fiera TV para Android, Android TV y TV Box.
+    </footer>
+  </div>
+
+  <script>
+    const owner = "FieraProducciones";
+    const repository = "FieraTV";
+    const fallbackDownload =
+      "https://github.com/FieraProducciones/FieraTV/releases/latest/download/FieraTV.apk";
+    const apiUrl =
+      `https://api.github.com/repos/${owner}/${repository}/releases/latest`;
+
+    let currentDownloadUrl = fallbackDownload;
+
+    function formatBytes(bytes){
+      if(!bytes || bytes <= 0) return "No disponible";
+      const units = ["B","KB","MB","GB"];
+      const index = Math.floor(Math.log(bytes) / Math.log(1024));
+      const value = bytes / Math.pow(1024,index);
+      return `${value.toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+    }
+
+    function formatDate(dateText){
+      if(!dateText) return "No disponible";
+      return new Intl.DateTimeFormat("es-PY",{
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+      }).format(new Date(dateText));
+    }
+
+    function detectDevice(){
+      const agent = navigator.userAgent.toLowerCase();
+      const isAndroid = agent.includes("android");
+      const isTV =
+        agent.includes("android tv") ||
+        agent.includes("smart-tv") ||
+        agent.includes("smarttv") ||
+        agent.includes("aft") ||
+        agent.includes("tv");
+
+      const message = document.getElementById("device-message");
+
+      if(isTV){
+        message.textContent =
+          "Android TV o TV Box detectado. Usa el botón para descargar la APK.";
+      }else if(isAndroid){
+        message.textContent =
+          "Dispositivo Android detectado. Puedes descargar la APK directamente.";
+      }else{
+        message.textContent =
+          "Estás usando una computadora. Descarga la APK o escanea el código QR.";
+      }
+    }
+
+    function updateDownloadLinks(url){
+      currentDownloadUrl = url;
+      document.getElementById("hero-download").href = url;
+      document.getElementById("main-download").href = url;
+
+      document.getElementById("qr-code").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+        encodeURIComponent(url);
+    }
+
+    async function loadRelease(){
+      const version = document.getElementById("version");
+      const releaseDate = document.getElementById("release-date");
+      const fileSize = document.getElementById("file-size");
+      const notes = document.getElementById("release-notes");
+
+      try{
+        const response = await fetch(apiUrl,{
+          headers:{"Accept":"application/vnd.github+json"}
+        });
+
+        if(!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const release = await response.json();
+        const apk = release.assets.find(
+          file => file.name.toLowerCase().endsWith(".apk")
+        );
+
+        version.textContent =
+          release.tag_name || release.name || "Última versión";
+
+        releaseDate.textContent =
+          formatDate(release.published_at || release.created_at);
+
+        notes.textContent =
+          release.body?.trim() ||
+          "Nueva versión con mejoras de rendimiento y estabilidad.";
+
+        if(apk){
+          fileSize.textContent = formatBytes(apk.size);
+          updateDownloadLinks(apk.browser_download_url);
+        }else{
+          fileSize.textContent = "APK";
+          updateDownloadLinks(fallbackDownload);
         }
-
-        function formatDate(dateText) {
-            if (!dateText) {
-                return "No disponible";
-            }
-
-            return new Intl.DateTimeFormat(
-                "es-PY",
-                {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric"
-                }
-            ).format(new Date(dateText));
-        }
-
-        function detectDevice() {
-            const agent = navigator.userAgent.toLowerCase();
-
-            const isAndroid = agent.includes("android");
-
-            const isTV =
-                agent.includes("android tv") ||
-                agent.includes("smart-tv") ||
-                agent.includes("smarttv") ||
-                agent.includes("aft") ||
-                agent.includes("tv");
-
-            const message =
-                document.getElementById("device-message");
-
-            if (isTV) {
-                document.body.classList.add("tv-mode");
-
-                message.textContent =
-                    "Dispositivo de TV detectado. Usa el botón para descargar la APK.";
-
-                return;
-            }
-
-            if (isAndroid) {
-                message.textContent =
-                    "Dispositivo Android detectado. La APK puede descargarse directamente.";
-
-                return;
-            }
-
-            message.textContent =
-                "Estás usando una computadora. Puedes descargar la APK o escanear el código QR.";
-        }
-
-        function updateDownloadLinks(url) {
-            currentDownloadUrl = url;
-
-            document.getElementById("hero-download").href = url;
-            document.getElementById("main-download").href = url;
-
-            const qrUrl =
-                "https://api.qrserver.com/v1/create-qr-code/" +
-                "?size=300x300&data=" +
-                encodeURIComponent(url);
-
-            document.getElementById("qr-code").src = qrUrl;
-        }
-
-        async function loadRelease() {
-            const version =
-                document.getElementById("version");
-
-            const releaseDate =
-                document.getElementById("release-date");
-
-            const fileSize =
-                document.getElementById("file-size");
-
-            const notes =
-                document.getElementById("release-notes");
-
-            try {
-                const response = await fetch(
-                    apiUrl,
-                    {
-                        headers: {
-                            "Accept":
-                                "application/vnd.github+json"
-                        }
-                    }
-                );
-
-                if (!response.ok) {
-                    throw new Error(
-                        `Error HTTP ${response.status}`
-                    );
-                }
-
-                const release = await response.json();
-
-                const apk = release.assets.find(
-                    file =>
-                        file.name.toLowerCase().endsWith(".apk")
-                );
-
-                version.textContent =
-                    release.tag_name ||
-                    release.name ||
-                    "Última versión";
-
-                releaseDate.textContent =
-                    formatDate(
-                        release.published_at ||
-                        release.created_at
-                    );
-
-                notes.textContent =
-                    release.body?.trim() ||
-                    "Nueva versión con mejoras de rendimiento y estabilidad.";
-
-                if (apk) {
-                    fileSize.textContent =
-                        formatBytes(apk.size);
-
-                    updateDownloadLinks(
-                        apk.browser_download_url
-                    );
-                } else {
-                    fileSize.textContent =
-                        "APK";
-
-                    updateDownloadLinks(
-                        fallbackDownload
-                    );
-                }
-
-            } catch (error) {
-                console.error(error);
-
-                version.textContent =
-                    "Última versión";
-
-                releaseDate.textContent =
-                    "Disponible";
-
-                fileSize.textContent =
-                    "APK";
-
-                notes.textContent =
-                    "No se pudieron consultar los detalles de la versión, pero la descarga sigue disponible.";
-
-                notes.classList.add("error");
-
-                updateDownloadLinks(
-                    fallbackDownload
-                );
-            }
-        }
-
-        document
-            .getElementById("copy-link")
-            .addEventListener(
-                "click",
-                async () => {
-                    const status =
-                        document.getElementById("copy-status");
-
-                    try {
-                        await navigator.clipboard.writeText(
-                            currentDownloadUrl
-                        );
-
-                        status.textContent =
-                            "Enlace copiado correctamente.";
-                    } catch {
-                        status.textContent =
-                            "No se pudo copiar. Mantén presionado el botón de descarga.";
-                    }
-                }
-            );
-
-        detectDevice();
+      }catch(error){
+        console.error(error);
+        version.textContent = "Última versión";
+        releaseDate.textContent = "Disponible";
+        fileSize.textContent = "APK";
+        notes.textContent =
+          "No se pudieron consultar los detalles de la versión, pero la descarga sigue disponible.";
+        notes.classList.add("error");
         updateDownloadLinks(fallbackDownload);
-        loadRelease();
-    </script>
+      }
+    }
 
+    const carousel = document.getElementById("carousel");
+    const dots = [...document.querySelectorAll(".dot")];
+    let currentSlide = 0;
+
+    function showSlide(index){
+      currentSlide = index;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot,i) => dot.classList.toggle("active",i === index));
+    }
+
+    dots.forEach((dot,index) => {
+      dot.addEventListener("click",() => showSlide(index));
+    });
+
+    setInterval(() => {
+      showSlide((currentSlide + 1) % dots.length);
+    },4500);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12});
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    window.addEventListener("mousemove",event => {
+      const x = (event.clientX / window.innerWidth - .5) * 12;
+      const y = (event.clientY / window.innerHeight - .5) * 12;
+      document.body.style.backgroundPosition = `${x}px ${y}px`;
+    });
+
+    document.getElementById("copy-link").addEventListener("click",async () => {
+      const status = document.getElementById("copy-status");
+      try{
+        await navigator.clipboard.writeText(currentDownloadUrl);
+        status.textContent = "Enlace copiado correctamente.";
+      }catch{
+        status.textContent = "No se pudo copiar el enlace.";
+      }
+    });
+
+    detectDevice();
+    updateDownloadLinks(fallbackDownload);
+    loadRelease();
+  </script>
 </body>
 </html>
