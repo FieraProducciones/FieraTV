@@ -152,7 +152,7 @@
     }
 
     .nav-download{
-      color:#170800!important;
+      color:#ffffff!important;
       padding:11px 16px;
       border-radius:13px;
       background:linear-gradient(135deg,var(--purple),var(--blue));
@@ -239,7 +239,7 @@
     .btn:focus-visible{outline:3px solid var(--purple);outline-offset:4px}
 
     .btn-primary{
-      color:#180900;
+      color:#ffffff;
       background:linear-gradient(135deg,var(--purple),var(--blue));
       box-shadow:0 16px 45px rgba(30,144,255,.30);
     }
@@ -335,14 +335,14 @@
       position:absolute;
       right:-8px;
       bottom:-8px;
-      width:155px;
+      width:185px;
       aspect-ratio:9/18.5;
       padding:8px;
       border-radius:28px;
       border:1px solid rgba(255,255,255,.16);
       background:linear-gradient(145deg,#2a2a2f,#0b0b0d);
       box-shadow:0 22px 65px rgba(0,0,0,.65);
-      animation:phoneFloat 5s ease-in-out infinite;
+      animation:none;
     }
 
     .phone-screen{
@@ -358,8 +358,9 @@
     .phone-screen img{
       width:100%;
       height:100%;
-      object-fit:contain;
-      object-position:center;
+      object-fit:cover;
+      object-position:top center;
+      border-radius:18px;
     }
 
     .section{
@@ -631,9 +632,10 @@
         transform:none;
       }
       .phone-mockup{
-        width:112px;
+        width:135px;
         right:4px;
         bottom:6px;
+        animation:none;
       }
       .features,.app-info,.screens-grid{grid-template-columns:1fr}
       .section{padding:58px 0}
@@ -650,7 +652,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="./">
-        <img class="brand-logo" src="./logo.png?v=30" alt="Fiera TV">
+        <img class="brand-logo" src="./logo.png?v=60" alt="Fiera TV">
         <span>
           <span class="brand-title">Fiera TV</span>
           <span class="brand-subtitle">Fiera Producciones</span>
@@ -703,14 +705,14 @@
 
           <div class="tv-mockup">
             <div class="tv-screen">
-              <img src="./captura1.png?v=30" alt="Fiera TV en televisor">
+              <img src="./captura1.png?v=60" alt="Fiera TV en televisor">
             </div>
             <div class="tv-stand"></div>
           </div>
 
           <div class="phone-mockup">
             <div class="phone-screen">
-              <img src="./captura2.png?v=30" alt="Fiera TV en teléfono">
+              <img src="./captura-celular.jpeg?v=60" alt="Fiera TV en teléfono">
             </div>
           </div>
         </div>
@@ -775,21 +777,21 @@
         <div class="screens-grid">
           <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura1.png?v=30" alt="Pantalla principal de Fiera TV">
+              <img src="./captura1.png?v=60" alt="Pantalla principal de Fiera TV">
             </div>
             <figcaption>Pantalla principal</figcaption>
           </figure>
 
           <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura2.png?v=30" alt="Canales y contenido de Fiera TV">
+              <img src="./captura2.png?v=60" alt="Canales y contenido de Fiera TV">
             </div>
             <figcaption>Canales y contenido</figcaption>
           </figure>
 
           <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura3.png?v=30" alt="Experiencia Fiera TV">
+              <img src="./captura3.png?v=60" alt="Experiencia Fiera TV">
             </div>
             <figcaption>Experiencia Fiera TV</figcaption>
           </figure>
