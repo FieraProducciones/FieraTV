@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Descarga oficial de Fiera TV para Android, Android TV y TV Box.">
-  <meta name="theme-color" content="#070707">
+  <meta name="theme-color" content="#020617">
   <title>Fiera TV | Descarga oficial</title>
 
   <style>
@@ -443,13 +443,13 @@
       margin:0;
       padding:12px;
       border-radius:24px;
-      transition:.25s ease;
+      transition:none;
     }
 
     .screen-card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(30,144,255,.30);
-      box-shadow:0 30px 75px rgba(0,0,0,.42);
+      transform:none;
+      border-color:var(--line);
+      box-shadow:0 22px 60px rgba(0,0,0,.28);
     }
 
     .screen-image{
@@ -638,8 +638,6 @@
       .features,.app-info,.screens-grid{grid-template-columns:1fr}
       .section{padding:58px 0}
       .btn{width:100%}
-      .slide{padding:5px}
-      .slide-card{aspect-ratio:16/10}
     }
 
     @media (prefers-reduced-motion:reduce){
@@ -652,7 +650,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="./">
-        <img class="brand-logo" src="./logo.png?v=20" alt="Fiera TV">
+        <img class="brand-logo" src="./logo.png?v=30" alt="Fiera TV">
         <span>
           <span class="brand-title">Fiera TV</span>
           <span class="brand-subtitle">Fiera Producciones</span>
@@ -705,16 +703,14 @@
 
           <div class="tv-mockup">
             <div class="tv-screen">
-              <img src="./captura1.jpeg?v=20" alt="Fiera TV en televisor"
-                   onerror="this.src='./captura1.jpg?v=10'">
+              <img src="./captura1.png?v=30" alt="Fiera TV en televisor">
             </div>
             <div class="tv-stand"></div>
           </div>
 
           <div class="phone-mockup">
             <div class="phone-screen">
-              <img src="./captura2.jpeg?v=20" alt="Fiera TV en teléfono"
-                   onerror="this.src='./captura2.jpg?v=10'">
+              <img src="./captura2.png?v=30" alt="Fiera TV en teléfono">
             </div>
           </div>
         </div>
@@ -777,26 +773,23 @@
         </div>
 
         <div class="screens-grid">
-          <figure class="screen-card glass reveal">
+          <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura1.jpeg?v=20" alt="Pantalla principal de Fiera TV"
-                   onerror="this.src='./captura1.jpg?v=20'">
+              <img src="./captura1.png?v=30" alt="Pantalla principal de Fiera TV">
             </div>
             <figcaption>Pantalla principal</figcaption>
           </figure>
 
-          <figure class="screen-card glass reveal">
+          <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura2.jpeg?v=20" alt="Canales y contenido de Fiera TV"
-                   onerror="this.src='./captura2.jpg?v=20'">
+              <img src="./captura2.png?v=30" alt="Canales y contenido de Fiera TV">
             </div>
             <figcaption>Canales y contenido</figcaption>
           </figure>
 
-          <figure class="screen-card glass reveal">
+          <figure class="screen-card glass">
             <div class="screen-image">
-              <img src="./captura3.png?v=20" alt="Experiencia Fiera TV"
-                   onerror="this.src='./captura3.jpg?v=20'">
+              <img src="./captura3.png?v=30" alt="Experiencia Fiera TV">
             </div>
             <figcaption>Experiencia Fiera TV</figcaption>
           </figure>
