@@ -912,8 +912,13 @@
         version.textContent =
           release.tag_name || release.name || "Última versión";
 
-        releaseDate.textContent =
-          formatDate(release.published_at || release.created_at);
+        if(apk){
+          releaseDate.textContent =
+            formatDate(apk.updated_at || apk.created_at || release.published_at || release.created_at);
+        }else{
+          releaseDate.textContent =
+            formatDate(release.published_at || release.created_at);
+        }
 
         notes.textContent =
           release.body?.trim() ||
