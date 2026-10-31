@@ -11,7 +11,7 @@
     :root{
       --bg:#080808;
       --card:rgba(17,17,17,.88);
-      --line:rgba(255,145,0,.20);
+      --line:rgba(255,145,0,.16);
       --text:#ffffff;
       --muted:#b8b3ad;
       --blue:#ff8a00;
@@ -28,11 +28,7 @@
       min-height:100vh;
       color:var(--text);
       font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(circle at 12% 12%,rgba(255,138,0,.16),transparent 28%),
-        radial-gradient(circle at 88% 20%,rgba(255,176,0,.12),transparent 26%),
-        radial-gradient(circle at 72% 88%,rgba(255,94,0,.08),transparent 32%),
-        linear-gradient(145deg,#050505 0%,#11100e 48%,#030303 100%);
+      background:#080808;
       overflow-x:hidden;
     }
 
@@ -41,11 +37,9 @@
       position:fixed;
       inset:0;
       pointer-events:none;
-      opacity:.14;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size:42px 42px;
+      opacity:.035;
+      background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:100% 3px;
       z-index:0;
     }
 
@@ -55,10 +49,10 @@
       width:420px;
       height:420px;
       border-radius:50%;
-      background:rgba(255,138,0,.09);
-      filter:blur(90px);
-      left:-120px;
-      bottom:-130px;
+      background:rgba(255,138,0,.035);
+      filter:blur(110px);
+      left:-180px;
+      bottom:-180px;
       pointer-events:none;
       animation:floatGlow 9s ease-in-out infinite alternate;
       z-index:0;
@@ -677,7 +671,7 @@
           </h1>
 
           <p class="hero-text">
-            Fiera TV está optimizada para Smartphons, tablets,
+            Fiera TV está optimizada para Celulares, tablets,
             Android TV y TV Box. Descarga la versión más reciente
             desde nuestra web oficial
           </p>
