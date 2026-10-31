@@ -14,8 +14,8 @@
       --line:rgba(225,225,230,.14);
       --text:#ffffff;
       --muted:#a8a8ad;
-      --blue:#e50914;
-      --purple:#f5f5f7;
+      --blue:#ff1028;
+      --purple:#b90016;
       --green:#e50914;
       --danger:#ff6b6b;
       --shadow:0 30px 90px rgba(0,0,0,.55);
@@ -904,7 +904,7 @@
         );
 
         version.textContent =
-          release.tag_name || release.name || "Última versión";
+          "11.0.2";
 
         if(apk){
           releaseDate.textContent =
@@ -927,7 +927,7 @@
         }
       }catch(error){
         console.error(error);
-        version.textContent = "Última versión";
+        version.textContent = "11.0.2";
         releaseDate.textContent = "Disponible";
         fileSize.textContent = "APK";
         notes.textContent =
