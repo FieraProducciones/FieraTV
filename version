@@ -904,7 +904,7 @@
         );
 
         version.textContent =
-          "11.0.2";
+          "12.0.6";
 
         if(apk){
           releaseDate.textContent =
@@ -927,7 +927,7 @@
         }
       }catch(error){
         console.error(error);
-        version.textContent = "11.0.2";
+        version.textContent = "12.0.6";
         releaseDate.textContent = "Disponible";
         fileSize.textContent = "APK";
         notes.textContent =
